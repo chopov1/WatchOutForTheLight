@@ -1,0 +1,3 @@
+Bugs:
+
+if object attatched to MoveObstacle gets to far past the bound it gets stuck in a loop. Find better solution
