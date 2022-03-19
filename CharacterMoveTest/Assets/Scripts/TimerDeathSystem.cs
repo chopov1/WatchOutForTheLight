@@ -9,7 +9,7 @@ public class TimerDeathSystem : MonoBehaviour
     CapsuleCollider2D playerCollider;
     float currentTime;
     float startSeconds;
-    [SerializeField] float biteTime = 3f;
+    //[SerializeField] float biteTime = 3f;
     bool count;
     bool bitingPlayer;
     public Text counter;
@@ -25,12 +25,12 @@ public class TimerDeathSystem : MonoBehaviour
     void Start()
     {
         playerCollider = GetComponent<CapsuleCollider2D>();
-        SunRayCast.OnPlayerHit += playerHit;
+        SunManager.OnPlayerHit += playerHit;
     }
-
+    
     private void OnDestroy()
     {
-        SunRayCast.OnPlayerHit -= playerHit;
+        SunManager.OnPlayerHit -= playerHit;
     }
     // Update is called once per frame
     void Update()

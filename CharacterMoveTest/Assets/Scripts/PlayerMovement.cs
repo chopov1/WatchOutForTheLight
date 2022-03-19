@@ -9,18 +9,15 @@ public class PlayerMovement : MonoBehaviour
     Animator playerAnimator;
     SpriteRenderer spriteRenderer;
     Rigidbody2D playerRB;
-    float deathLevel = -5;
-    float fallSpeed = 5;
     public float currentMoveSpeed = 9f;
-    [SerializeField] public float moveSpeed = 9f;
-    [SerializeField] public float moveSpeedInSun = 4f;
+    [SerializeField] public float moveSpeed = 100f;
+    [SerializeField] public float moveSpeedInSun = 200f;
     public float currentJumpForce;
-    [SerializeField] public float jumpForce = 13f;
-    [SerializeField] public float jumpForceInSun = 13f;
+    [SerializeField] public float jumpForce = 900f;
+    [SerializeField] public float jumpForceInSun = 1100f;
     [SerializeField] float acceleration = 13;
     [SerializeField] float decceleration = 16;
     [SerializeField] float frictionAmount = 0.22f;
-    [SerializeField] float jumpCutMultiplier = .4f;
     [SerializeField] float fallGravityMultiplier = 2;
     [SerializeField] float gravityScale = 1;
     bool hasJumped = false;
@@ -28,10 +25,9 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;
     bool cayoteTimeUp = true;
     
-    private WaitForSeconds jumpWaitTime = new WaitForSeconds(0.3f);
 
-    public delegate void PlayerDeathEventManager();
-    public event PlayerDeathEventManager OnPlayerDeath;
+    /*public delegate void PlayerDeathEventManager();
+    public event PlayerDeathEventManager OnPlayerDeath;*/
     // Start is called before the first frame update
     void Start()
     {

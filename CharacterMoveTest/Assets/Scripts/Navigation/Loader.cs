@@ -27,7 +27,8 @@ public static class Loader
     
     public static void LoadScene(Scene scene)
     {
-        if(scene != Scene.RestartMenu && scene != Scene.Loading && scene != Scene.MainMenu)
+        SunManager.sunObjects.Clear();
+        if (scene != Scene.RestartMenu && scene != Scene.Loading && scene != Scene.MainMenu)
         {
             lastActiveScene = scene;
         }

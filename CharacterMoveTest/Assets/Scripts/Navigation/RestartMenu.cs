@@ -21,6 +21,7 @@ public class RestartMenu : MonoBehaviour
 
     public void restart()
     {
+        
         Loader.LoadScene(Loader.lastActiveScene);
     }
 

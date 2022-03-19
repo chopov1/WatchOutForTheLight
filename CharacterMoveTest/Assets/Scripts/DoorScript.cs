@@ -9,7 +9,7 @@ public class DoorScript : MonoBehaviour
     public GameObject activator;
     public GameObject activator2;
     public bool defaultState;
-    public bool doorState;
+    bool doorState;
     
     // Start is called before the first frame update
     void Start()
@@ -27,7 +27,9 @@ public class DoorScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        activator.GetComponent<ActivatorScript>().ActivatorScriptEvent -= openDoor;
+       /* activator.GetComponent<ActivatorScript>().ActivatorScriptEvent -= openDoor;
+        if(activator2 != null)
+        activator2.GetComponent<ActivatorScript>().ActivatorScriptEvent -= openDoor;*/
     }
     // Update is called once per frame
     void Update()

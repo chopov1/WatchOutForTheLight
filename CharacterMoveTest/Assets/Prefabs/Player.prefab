@@ -115,6 +115,7 @@ GameObject:
   - component: {fileID: 264162244045509308}
   - component: {fileID: 264162244045509309}
   - component: {fileID: 8927875212687956619}
+  - component: {fileID: 3637600535516021587}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -154,12 +155,13 @@ MonoBehaviour:
     m_Bits: 247
   currentMoveSpeed: 9
   moveSpeed: 200
-  slowedSpeed: 100
+  moveSpeedInSun: 200
+  currentJumpForce: 0
   jumpForce: 900
+  jumpForceInSun: 1100
   acceleration: 1
   decceleration: 1
   frictionAmount: 2
-  jumpCutMultiplier: 1
   fallGravityMultiplier: 1.6
   gravityScale: 2
   canAcceptInput: 1
@@ -212,7 +214,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ea29513488c394a8c976d31645d1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  biteTime: 1.5
   counter: {fileID: 0}
   TimerTresh: 2
   moveScript: {fileID: 264162244045509311}
+--- !u!114 &3637600535516021587
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264162244045509296}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bd1f57ac32f7d64ca535f4ef98ceec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
