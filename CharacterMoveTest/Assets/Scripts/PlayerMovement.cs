@@ -50,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+
+
     private void FixedUpdate()
     {
         if (movement.x > 0.1f || movement.x < -0.1f)
@@ -85,16 +87,11 @@ public class PlayerMovement : MonoBehaviour
         {
             OnJump();
         }
-
         else if(isGrounded() && movement == new Vector2(0, 0) )
         {
-            //we use either the friction amount or our velocity
-            float amount = Mathf.Min(Mathf.Abs(playerRB.velocity.x), Mathf.Abs(frictionAmount));
-            //sets to movement direction
-            amount *= Mathf.Sign(playerRB.velocity.x);
-            //applies force against movement direction
-            playerRB.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+            applyFriction();
         }
+
         if (playerRB.velocity.y < 0 && hasJumped)
         {
             playerRB.gravityScale = gravityScale * fallGravityMultiplier;
@@ -122,7 +119,15 @@ public class PlayerMovement : MonoBehaviour
         
         return false;
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "DeathFloor")
+        {
+            Loader.LoadScene(Loader.Scene.RestartMenu);
+        }
+    }
+
     private void OnJump()
     {
         //playerRB.AddForce(Vector2.down * playerRB.velocity.y * (1- jumpCutMultiplier), ForceMode2D.Impulse);
@@ -131,14 +136,8 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag == "DeathFloor")
-        {
-            Loader.LoadScene(Loader.Scene.RestartMenu);
-        }
-    }
-
+    
+    #region Grounding
     private bool isGrounded()
     {
         float extraHeight = .01f;
@@ -169,14 +168,22 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-     
+    public void applyFriction()
+    {
+        //we use either the friction amount or our velocity
+        float amount = Mathf.Min(Mathf.Abs(playerRB.velocity.x), Mathf.Abs(frictionAmount));
+        //sets to movement direction
+        amount *= Mathf.Sign(playerRB.velocity.x);
+        //applies force against movement direction
+        playerRB.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+    }
     IEnumerator startCayoteTime()
     {
         cayoteTimeUp = false;
         yield return new WaitForSeconds(0.1f);
         cayoteTimeUp = true;
     }
-
+    #endregion
 
 
 }

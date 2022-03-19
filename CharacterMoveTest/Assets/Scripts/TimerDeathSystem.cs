@@ -42,9 +42,6 @@ public class TimerDeathSystem : MonoBehaviour
                 if(moveScript.currentMoveSpeed != moveScript.moveSpeed)
                 {
                     moveScript.currentMoveSpeed = moveScript.moveSpeed;
-                }
-                if(moveScript.currentJumpForce != moveScript.jumpForce)
-                {
                     moveScript.currentJumpForce = moveScript.jumpForce;
                 }
                 currentTime = startSeconds;
@@ -54,9 +51,6 @@ public class TimerDeathSystem : MonoBehaviour
                 if(moveScript.currentMoveSpeed != moveScript.moveSpeedInSun)
                 {
                     moveScript.currentMoveSpeed = moveScript.moveSpeedInSun;
-                }
-                if(moveScript.currentJumpForce != moveScript.jumpForceInSun)
-                {
                     moveScript.currentJumpForce = moveScript.jumpForceInSun;
                 }
                 currentTime += Time.deltaTime;
