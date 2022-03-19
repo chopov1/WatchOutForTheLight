@@ -17,6 +17,9 @@ public class ObjectPooler : MonoBehaviour
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
     public static ObjectPooler instance;
+
+    public delegate void ObjectPoolerEventHandler();
+    public event ObjectPoolerEventHandler poolDictionaryCreated;
     private void Awake()
     {
         instance = this;
@@ -40,6 +43,8 @@ public class ObjectPooler : MonoBehaviour
 
             poolDictionary.Add(pool.tag, objectPool);
         }
+        if(poolDictionaryCreated != null)
+        poolDictionaryCreated();
     }
 
     public GameObject SpawnFromPool(string tag, Vector2 pos, Quaternion rotation)
