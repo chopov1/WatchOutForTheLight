@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class HumanBehavior : MonoBehaviour
 {
+    #region Properties
     [SerializeField] public float acceleration = 10;
     [SerializeField] public float decceleration = 6;
-
     [SerializeField] public float moveSpeedY;
     [SerializeField] public float moveSpeedX;
     [SerializeField] public float BoundY;
@@ -14,31 +14,27 @@ public class HumanBehavior : MonoBehaviour
     [SerializeField] public float BoundX;
     [SerializeField] public float BoundXTwo;
     [SerializeField] float detectionLength = 80f;
+    public float moveSpeed = 6f;
     [SerializeField] LayerMask maskToIgnore;
     
     public GameObject player;
-    public float moveSpeed = 6f;
     public bool canMove = true;
     public WaitForSeconds stunnedTime = new WaitForSeconds(0.3f);
-
     HumanState _currentState;
-
 
     public Vector2 startPos = new Vector2(0, 0);
     public Vector2 rightBound = new Vector2(0, 0);
     public Vector2 leftBound = new Vector2(0, 0);
     public Vector2 direction = new Vector2(1, 0);
-    
+    #endregion
 
     public void setState(HumanState state)
     {
         _currentState = state;
     }
-    // Start is called before the first frame update
+
     void Start()
     {
-        /*TimerDeathSystem.BiteHuman += beingBitten;
-        TimerDeathSystem.BiteDeath += finishedBite;*/
         startPos = transform.position;
         direction = Vector2.right;
         rightBound.x = BoundX;
@@ -46,12 +42,6 @@ public class HumanBehavior : MonoBehaviour
         leftBound.x = BoundXTwo;
         leftBound.y = BoundYTwo;
         setState(new HumanIdle(this));
-    }
-
-    private void OnDestroy()
-    {
-        /*TimerDeathSystem.BiteHuman -= beingBitten;
-        TimerDeathSystem.BiteDeath -= finishedBite;*/
     }
 
     private void FixedUpdate()
@@ -68,7 +58,6 @@ public class HumanBehavior : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         Detect();
@@ -86,11 +75,6 @@ public class HumanBehavior : MonoBehaviour
 
     void Detect()
     {
-        /*Vector2 direction = new Vector2(3, 0);
-        if(Mathf.Sign(moveSpeedX) == -1)
-        {
-            direction = new Vector2(-3, 0);
-        }*/
         RaycastHit2D detectionHit = Physics2D.Raycast(gameObject.transform.position, direction, detectionLength, maskToIgnore);
         if (detectionHit.collider != null)
         {

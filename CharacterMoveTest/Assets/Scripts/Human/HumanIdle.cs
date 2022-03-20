@@ -23,16 +23,4 @@ public class HumanIdle : HumanState
         human.transform.Translate(human.direction * (human.moveSpeedX) * Time.deltaTime);
     }
 
-
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

@@ -8,7 +8,7 @@ public class CameraZoom : MonoBehaviour
     float sizeInSun = 11;
     float sizeInShade = 10;
     public float zoomSpeed;
-    // Start is called before the first frame update
+
     void Start()
     {
         SunManager.OnPlayerHit += changeCameraZoom;
@@ -18,12 +18,6 @@ public class CameraZoom : MonoBehaviour
     private void OnDestroy()
     {
         SunManager.OnPlayerHit -= changeCameraZoom;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void changeCameraZoom(bool isHit)

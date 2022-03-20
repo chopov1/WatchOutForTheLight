@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
+    #region Properties
     // I made a comment!
     CapsuleCollider2D playerCollider;
     [SerializeField] LayerMask layerMask;
@@ -25,8 +26,9 @@ public class PlayerMovement : MonoBehaviour
     public bool canAcceptInput = true;
     Vector2 movement;
     bool cayoteTimeUp = true;
-    
+    #endregion
 
+    #region UnityMethods
     /*public delegate void PlayerDeathEventManager();
     public event PlayerDeathEventManager OnPlayerDeath;*/
     // Start is called before the first frame update
@@ -40,7 +42,6 @@ public class PlayerMovement : MonoBehaviour
         currentJumpForce = jumpForce;
         Loader.lastActiveScene = (Loader.Scene)SceneManager.GetActiveScene().buildIndex;
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -50,9 +51,6 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetFloat("Speed", Mathf.Abs(movement.x));
         }
     }
-
-
-
     private void FixedUpdate()
     {
         if (movement.x > 0.1f || movement.x < -0.1f)
@@ -103,6 +101,16 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "DeathFloor")
+        {
+            Loader.LoadScene(Loader.Scene.RestartMenu);
+        }
+    }
+    #endregion
+
+    #region Jumping
     private bool CanJump()
     {
         if (!canAcceptInput)
@@ -120,24 +128,14 @@ public class PlayerMovement : MonoBehaviour
         
         return false;
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "DeathFloor")
-        {
-            Loader.LoadScene(Loader.Scene.RestartMenu);
-        }
-    }
-
     private void OnJump()
     {
         //playerRB.AddForce(Vector2.down * playerRB.velocity.y * (1- jumpCutMultiplier), ForceMode2D.Impulse);
         playerRB.AddForce(new Vector2(0f, movement.y * currentJumpForce * Time.deltaTime), ForceMode2D.Impulse);
         hasJumped = true;
     }
+    #endregion
 
-
-    
     #region Grounding
     private bool isGrounded()
     {

@@ -13,7 +13,6 @@ public class ObjectPooler : MonoBehaviour
         public GameObject prefab;
         public int size;
     }
-
     public List<Pool> pools;
     public Dictionary<string, Queue<GameObject>> poolDictionary;
 
@@ -68,9 +67,4 @@ public class ObjectPooler : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
