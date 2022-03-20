@@ -55,7 +55,7 @@ public class TimerDeathSystem : MonoBehaviour
                 }
                 currentTime += Time.deltaTime;
             }
-            counter.text = currentTime.ToString("#.00");
+            counter.text = "Time Left: " + currentTime.ToString("#.00");
             if (currentTime >= TimerTresh)
             {
                 Loader.LoadScene(Loader.Scene.RestartMenu);
