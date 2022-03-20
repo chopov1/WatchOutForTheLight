@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float frictionAmount = 0.22f;
     [SerializeField] float fallGravityMultiplier = 2;
     [SerializeField] float gravityScale = 1;
+    float velPower = 0.9f;
+    float jumpCutMultiplier = 0.5f;
         float extraHeight = .1f;
 
     bool hasJumped = false;
@@ -73,7 +75,7 @@ public class PlayerMovement : MonoBehaviour
 
             //applies acceleration to speed difference, then raises to a set power so acceleration increases with highr speeds
             //finnaly multiplies by sign to reapply direction
-            float move = Mathf.Pow(Mathf.Abs(speedDif), accelRate) * Mathf.Sign(speedDif);
+            float move = Mathf.Pow(Mathf.Abs(speedDif)* accelRate, velPower) * Mathf.Sign(speedDif);
 
             playerRB.AddForce(move * Vector2.right);
 
@@ -87,11 +89,15 @@ public class PlayerMovement : MonoBehaviour
         {
             OnJump();
         }
+
         else if(isGrounded() && movement == new Vector2(0, 0) )
         {
             applyFriction();
         }
-
+        /*if (playerRB.velocity.y < 0.01f && hasJumped)
+        {
+            playerRB.AddForce(Vector2.down * playerRB.velocity.y * (1 - jumpCutMultiplier), ForceMode2D.Impulse);
+        }*/
         if (playerRB.velocity.y < 0 && hasJumped)
         {
             playerRB.gravityScale = gravityScale * fallGravityMultiplier;
@@ -143,8 +149,7 @@ public class PlayerMovement : MonoBehaviour
     
 
     private void OnJump()
-    {
-        //playerRB.AddForce(Vector2.down * playerRB.velocity.y * (1- jumpCutMultiplier), ForceMode2D.Impulse);
+    {   
         playerRB.AddForce(new Vector2(0f, movement.y * currentJumpForce * Time.deltaTime), ForceMode2D.Impulse);
         hasJumped = true;
     }

@@ -42,19 +42,27 @@ public class TimerDeathSystem : MonoBehaviour
                 if(moveScript.currentMoveSpeed != moveScript.moveSpeed)
                 {
                     moveScript.currentMoveSpeed = moveScript.moveSpeed;
+                    
+                }
+                if (moveScript.currentJumpForce != moveScript.jumpForce)
+                {
                     moveScript.currentJumpForce = moveScript.jumpForce;
                 }
                 currentTime = startSeconds;
             }
             if (count == true)
             {
-                if(moveScript.currentMoveSpeed != moveScript.moveSpeedInSun)
+                if (moveScript.currentMoveSpeed != moveScript.moveSpeedInSun)
                 {
                     moveScript.currentMoveSpeed = moveScript.moveSpeedInSun;
+                }
+                if (moveScript.currentJumpForce != moveScript.jumpForceInSun)
+                {
                     moveScript.currentJumpForce = moveScript.jumpForceInSun;
                 }
                 currentTime += Time.deltaTime;
             }
+            Debug.Log(moveScript.currentJumpForce);
             counter.text = "Time Left: " + currentTime.ToString("#.00");
             if (currentTime >= TimerTresh)
             {
