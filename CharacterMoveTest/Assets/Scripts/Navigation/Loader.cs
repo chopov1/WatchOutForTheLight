@@ -42,8 +42,6 @@ public static class Loader
         SceneManager.LoadScene(Scene.Loading.ToString());
     }
 
-    
-
     public static void LoaderCallBack()
     {
         //triggered after the first update which lets the screen refresh

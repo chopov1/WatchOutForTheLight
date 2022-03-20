@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class SunRayCast : MonoBehaviour
 {
-
-    
-
     public LayerMask maskToIgnore;
 
     public bool isHittingPlayer;
@@ -20,7 +17,6 @@ public class SunRayCast : MonoBehaviour
     {
         SunManager.sunObjects.Add(this);
     }
-
     // Update is called once per frame
     private void FixedUpdate()
     {
