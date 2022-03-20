@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1636081195510170205}
   - component: {fileID: 7539388232345110032}
   - component: {fileID: 8313931106224843431}
-  m_Layer: 6
+  m_Layer: 10
   m_Name: Projectile
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2819490480994192285}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.94629, y: 2.1253583, z: 0}
-  m_LocalScale: {x: 1.8119946, y: 0.66396785, z: 0.50107}
+  m_LocalScale: {x: 1.8119946, y: 0.14929317, z: 0.50107}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -132,7 +132,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2819490480994192285}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
   m_Name: 
@@ -150,4 +150,4 @@ MonoBehaviour:
   - {x: -0.52084684, y: 0.55326605, z: 0}
   m_ShapePathHash: 1991580357
   m_Mesh: {fileID: 0}
-  m_InstanceId: 60794
+  m_InstanceId: 35236
