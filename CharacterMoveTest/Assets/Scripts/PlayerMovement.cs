@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
+    // I made a comment!
     CapsuleCollider2D playerCollider;
     [SerializeField] LayerMask layerMask;
     Animator playerAnimator;
