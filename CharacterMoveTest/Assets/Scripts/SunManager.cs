@@ -5,31 +5,13 @@ using UnityEngine;
 public class SunManager : MonoBehaviour
 {
     public static List<SunRayCast> sunObjects = new List<SunRayCast>();
-
     int sunsHittingPlayer;
     public delegate void PlayerHitEventHandler(bool isHit);
     public static event PlayerHitEventHandler OnPlayerHit;
-
-    // Start is called before the first frame update
-    
-    void Start()
-    {
-
-    }
-
     private void FixedUpdate()
     {
         isPlayerHit();
     }
-    
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    
-
     public void isPlayerHit()
     {
         sunsHittingPlayer = 0;

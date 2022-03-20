@@ -17,7 +17,6 @@ public class Dispenser : MonoBehaviour
         pooler.poolDictionaryCreated += setProjectileProperties;
         
     }
-
     private void setProjectileProperties()
     {
         foreach(GameObject obj in pooler.poolDictionary["Enemy"])
@@ -27,11 +26,6 @@ public class Dispenser : MonoBehaviour
             p.moveSpeed = projectileSpeed;
         }
     }
-
-    private void FixedUpdate()
-    {
-        
-    }
     // Update is called once per frame
     void Update()
     {
@@ -40,7 +34,6 @@ public class Dispenser : MonoBehaviour
             spawnEnemy();
         }
     }
-
     public void spawnEnemy()
     {
         if(assignSecondPos == false)

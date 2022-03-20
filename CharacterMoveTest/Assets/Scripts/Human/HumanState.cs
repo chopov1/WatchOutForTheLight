@@ -11,8 +11,6 @@ public abstract class HumanState
     {
         human = behaviorScript;
     }
-    // Start is called before the first frame update
-    
 
     public virtual void playerMove()
     {
