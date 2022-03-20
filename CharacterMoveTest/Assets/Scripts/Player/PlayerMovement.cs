@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
     #region Properties
-    CapsuleCollider2D playerCollider;
+    BoxCollider2D playerCollider;
     [SerializeField] LayerMask layerMask;
     Animator playerAnimator;
     SpriteRenderer spriteRenderer;
@@ -22,10 +22,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float fallGravityMultiplier = 2;
     [SerializeField] float gravityScale = 1;
     float velPower = 0.9f;
-    float jumpCutMultiplier = 0.5f;
-        float extraHeight = .1f;
+    float extraHeight = .1f;
 
     bool hasJumped = false;
+    bool isJumping;
     public bool canAcceptInput = true;
     Vector2 movement;
     bool cayoteTimeUp = true;
@@ -38,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         playerAnimator = GetComponentInChildren<Animator>();
-        playerCollider = GetComponent<CapsuleCollider2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
         currentMoveSpeed = moveSpeed;
         currentJumpForce = jumpForce;
         Loader.lastActiveScene = (Loader.Scene)SceneManager.GetActiveScene().buildIndex;
@@ -47,15 +47,17 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    private void FixedUpdate()
+    {
         if (canAcceptInput)
         {
             movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
             playerAnimator.SetFloat("Speed", Mathf.Abs(movement.x));
         }
-    }
-
-    private void FixedUpdate()
-    {
+        isGrounded();
         if (movement.x > 0.1f || movement.x < -0.1f)
         {
             if(movement.x < -0.1f)
@@ -87,10 +89,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (CanJump())
         {
-            OnJump();
+            addJumpForce();
         }
-
-        else if(isGrounded() && movement == new Vector2(0, 0) )
+        if(movement == new Vector2(0, 0) )
         {
             applyFriction();
         }
@@ -148,7 +149,7 @@ public class PlayerMovement : MonoBehaviour
 
     
 
-    private void OnJump()
+    private void addJumpForce()
     {   
         playerRB.AddForce(new Vector2(0f, movement.y * currentJumpForce * Time.deltaTime), ForceMode2D.Impulse);
         hasJumped = true;
@@ -160,7 +161,7 @@ public class PlayerMovement : MonoBehaviour
     private bool isGrounded()
     {
         RaycastHit2D groundCheckRay = Physics2D.Raycast(playerCollider.bounds.center, Vector2.down, playerCollider.bounds.extents.y + extraHeight, layerMask);
-        //DrawDebugRay(groundCheckRay);
+        DrawDebugRay(groundCheckRay);
         if (groundCheckRay.collider != null)
         {
             if (hasJumped)

@@ -62,7 +62,6 @@ public class TimerDeathSystem : MonoBehaviour
                 }
                 currentTime += Time.deltaTime;
             }
-            Debug.Log(moveScript.currentJumpForce);
             counter.text = "Time Left: " + currentTime.ToString("#.00");
             if (currentTime >= TimerTresh)
             {
