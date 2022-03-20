@@ -20,6 +20,6 @@ public class RestartMenu : MonoBehaviour
 
     public void BackToMenu()
     {
-        Loader.LoadScene(Loader.Scene.MainMenu);
+        Loader.LoadScene(Loader.Scene.UI_Main_Menu);
     }
 }

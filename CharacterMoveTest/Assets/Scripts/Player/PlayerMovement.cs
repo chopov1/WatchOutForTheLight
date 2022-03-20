@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.gameObject.tag == "DeathFloor")
         {
-            Loader.LoadScene(Loader.Scene.RestartMenu);
+            Loader.LoadScene(Loader.Scene.UI_Restart_Menu);
         }
     }
     #endregion

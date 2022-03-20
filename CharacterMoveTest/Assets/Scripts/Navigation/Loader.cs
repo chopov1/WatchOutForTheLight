@@ -9,16 +9,16 @@ public static class Loader
     public static int NumberOfScenes = 5;
     public enum Scene
     {
-        MainMenu,
-        Loading,
-        RestartMenu,
-        Level0,
-        Level1,
-        level2,
-        level3,
-        level4,
-        level5,
-        WinScreen,
+        UI_Main_Menu,
+        UI_Loading,
+        UI_Restart_Menu,
+        IP_Level_0,
+        IP_Level_1,
+        IP_Level_2,
+        IP_Level_3,
+        IP_Level_4,
+        IP_Level_5,
+        UI_Win_Screen,
     }
 
     public static Scene lastActiveScene;
@@ -28,7 +28,7 @@ public static class Loader
     public static void LoadScene(Scene scene)
     {
         SunManager.sunObjects.Clear();
-        if (scene != Scene.RestartMenu && scene != Scene.Loading && scene != Scene.MainMenu)
+        if (scene != Scene.UI_Restart_Menu && scene != Scene.UI_Loading && scene != Scene.UI_Main_Menu)
         {
             lastActiveScene = scene;
         }
@@ -39,7 +39,7 @@ public static class Loader
         };
 
         //load the loading scene
-        SceneManager.LoadScene(Scene.Loading.ToString());
+        SceneManager.LoadScene(Scene.UI_Loading.ToString());
     }
 
     public static void LoaderCallBack()
