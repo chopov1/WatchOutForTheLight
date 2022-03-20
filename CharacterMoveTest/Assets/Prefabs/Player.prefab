@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 264162244045509308}
   - component: {fileID: 264162244045509309}
   - component: {fileID: 8927875212687956619}
-  - component: {fileID: 3637600535516021587}
+  - component: {fileID: 8643077811786488077}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -217,7 +217,7 @@ MonoBehaviour:
   counter: {fileID: 0}
   TimerTresh: 2
   moveScript: {fileID: 264162244045509311}
---- !u!114 &3637600535516021587
+--- !u!114 &8643077811786488077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -226,6 +226,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 264162244045509296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0bd1f57ac32f7d64ca535f4ef98ceec8, type: 3}
+  m_Script: {fileID: 11500000, guid: 5f2f39728517577499e51d6e9c5b78b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
