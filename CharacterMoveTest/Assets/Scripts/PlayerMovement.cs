@@ -140,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
     #region Grounding
     private bool isGrounded()
     {
-        float extraHeight = .01f;
+        float extraHeight = .1f;
         RaycastHit2D groundCheckRay = Physics2D.Raycast(playerCollider.bounds.center, Vector2.down, playerCollider.bounds.extents.y + extraHeight, layerMask);
         //Color raycolor;
         //Debug.Log(groundCheckRay.collider);

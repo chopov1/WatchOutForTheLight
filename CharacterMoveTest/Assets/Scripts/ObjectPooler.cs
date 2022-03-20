@@ -8,6 +8,7 @@ public class ObjectPooler : MonoBehaviour
     [System.Serializable]
     public class Pool
     {
+        public bool isDoublePool;
         public string tag;
         public GameObject prefab;
         public int size;
@@ -32,14 +33,13 @@ public class ObjectPooler : MonoBehaviour
         foreach(Pool pool in pools)
         {
             Queue<GameObject> objectPool = new Queue<GameObject>();
-
-            for(int i =0; i < pool.size ; i++)
-            {
-                GameObject obj = Instantiate(pool.prefab);
-                obj.SetActive(false);
-                objectPool.Enqueue(obj);
-
-            }
+            
+                for(int i =0; i < pool.size; i++)
+                {
+                    GameObject obj = Instantiate(pool.prefab);
+                    obj.SetActive(false);
+                    objectPool.Enqueue(obj);
+                }
 
             poolDictionary.Add(pool.tag, objectPool);
         }
