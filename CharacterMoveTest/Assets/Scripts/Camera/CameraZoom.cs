@@ -7,7 +7,7 @@ public class CameraZoom : MonoBehaviour
     Camera cam;
     float sizeInSun = 11;
     float sizeInShade = 10;
-    public float zoomSpeed;
+    public float zoomSpeed = 0.08f;
 
     void Start()
     {
