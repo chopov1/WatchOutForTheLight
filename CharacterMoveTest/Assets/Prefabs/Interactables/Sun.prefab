@@ -98,7 +98,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maskToIgnore:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 4294967295
   isHittingPlayer: 0
   playerTransform: {fileID: 0}
 --- !u!1 &4206734449775129152

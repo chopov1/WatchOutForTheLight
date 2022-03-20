@@ -26,7 +26,7 @@ public class GoalScript : MonoBehaviour
         }
         else
         {
-            Loader.LoadScene(Loader.Scene.WinScreen);
+            Loader.LoadScene(Loader.Scene.UI_Win_Screen);
         }
     }
 }

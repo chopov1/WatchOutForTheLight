@@ -6,33 +6,33 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Scenes - UI/MainMenu.unity
+    path: Assets/Scenes/Scenes - UI/UI_Main_Menu.unity
     guid: ccf049af141169d4d8727702e011ebda
   - enabled: 1
-    path: Assets/Scenes/Scenes - UI/Loading.unity
+    path: Assets/Scenes/Scenes - UI/UI_Loading.unity
     guid: 4d893e2e711500d408079bdd34e8a568
   - enabled: 1
-    path: Assets/Scenes/Scenes - UI/RestartMenu.unity
+    path: Assets/Scenes/Scenes - UI/UI_Restart_Menu.unity
     guid: 3d7776ad1fd08fb489e395315db56669
   - enabled: 1
-    path: Assets/Scenes/Scenes - Levels/Levels - In Progress/Level0.unity
+    path: Assets/Scenes/Scenes - Levels/Levels - In Progress/IP_Level_0.unity
     guid: eeb685eea00cb4b4da4ddfbe880038b2
   - enabled: 1
-    path: Assets/Scenes/Scenes - Levels/Levels - In Progress/Level1.unity
+    path: Assets/Scenes/Scenes - Levels/Levels - In Progress/IP_Level_1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Scenes - Levels/Levels - In Progress/Level2.unity
+    path: Assets/Scenes/Scenes - Levels/Levels - In Progress/IP_Level_2.unity
     guid: b1f6662a7ecb0d34ea66c6acbbe52713
   - enabled: 1
-    path: Assets/Scenes/Scenes - Levels/Levels - In Progress/Level3.unity
+    path: Assets/Scenes/Scenes - Levels/Levels - In Progress/IP_Level_3.unity
     guid: f431f80d7f907a142a75c158463d6066
   - enabled: 1
-    path: Assets/Scenes/Scenes - Levels/Levels - In Progress/Level4.unity
+    path: Assets/Scenes/Scenes - Levels/Levels - In Progress/IP_Level_4.unity
     guid: 7b161e464a38d5e428e6eaa09b0703e3
   - enabled: 1
-    path: Assets/Scenes/Scenes - Levels/Levels - In Progress/Level5.unity
+    path: Assets/Scenes/Scenes - Levels/Levels - In Progress/IP_Level_5.unity
     guid: 923424fd2cfeb964fb7176ad4e1e02ed
   - enabled: 1
-    path: Assets/Scenes/Scenes - UI/WinScreen.unity
+    path: Assets/Scenes/Scenes - UI/UI_Win_Screen.unity
     guid: fe60cc76e7cacd9439efaf2506a9be5c
   m_configObjects: {}
