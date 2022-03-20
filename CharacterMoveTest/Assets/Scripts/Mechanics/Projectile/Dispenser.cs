@@ -9,13 +9,15 @@ public class Dispenser : MonoBehaviour
     public float projectileSpeed;
     bool assignSecondPos = false;
     public Vector2 Displacement;
+    bool active = true;
+    public float dispenseRate = 2;
     // Start is called before the first frame update
     void Start()
     {
 
         pooler = ObjectPooler.instance;
         pooler.poolDictionaryCreated += setProjectileProperties;
-        
+        StartCoroutine(spawnEnemies());
     }
     private void setProjectileProperties()
     {
@@ -29,9 +31,8 @@ public class Dispenser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.G))
+        if (active)
         {
-            spawnEnemy();
         }
     }
     public void spawnEnemy()
@@ -45,5 +46,15 @@ public class Dispenser : MonoBehaviour
         pooler.SpawnFromPool("Platform", (Vector2)transform.position + Displacement, Quaternion.identity);
         assignSecondPos=false;
         return;
+    }
+
+    IEnumerator spawnEnemies()
+    {
+        while (active)
+        {
+            yield return new WaitForSeconds(dispenseRate);
+
+            spawnEnemy();
+        }
     }
 }

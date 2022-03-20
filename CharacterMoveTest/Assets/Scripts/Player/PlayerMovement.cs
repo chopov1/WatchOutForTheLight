@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class PlayerMovement : MonoBehaviour
 {
+    #region Properties
     CapsuleCollider2D playerCollider;
     [SerializeField] LayerMask layerMask;
     Animator playerAnimator;
@@ -20,15 +21,16 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float frictionAmount = 0.22f;
     [SerializeField] float fallGravityMultiplier = 2;
     [SerializeField] float gravityScale = 1;
+        float extraHeight = .1f;
+
     bool hasJumped = false;
     public bool canAcceptInput = true;
     Vector2 movement;
     bool cayoteTimeUp = true;
-    
+    #endregion
 
-    /*public delegate void PlayerDeathEventManager();
-    public event PlayerDeathEventManager OnPlayerDeath;*/
-    // Start is called before the first frame update
+
+    #region UnityMethods
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
@@ -49,8 +51,6 @@ public class PlayerMovement : MonoBehaviour
             playerAnimator.SetFloat("Speed", Mathf.Abs(movement.x));
         }
     }
-
-
 
     private void FixedUpdate()
     {
@@ -102,6 +102,26 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "DeathFloor")
+        {
+            Loader.LoadScene(Loader.Scene.RestartMenu);
+        }
+    }
+    #endregion
+
+    public void applyFriction()
+    {
+        //we use either the friction amount or our velocity
+        float amount = Mathf.Min(Mathf.Abs(playerRB.velocity.x), Mathf.Abs(frictionAmount));
+        //sets to movement direction
+        amount *= Mathf.Sign(playerRB.velocity.x);
+        //applies force against movement direction
+        playerRB.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
+    }
+
+    #region Jumping
     private bool CanJump()
     {
         if (!canAcceptInput)
@@ -120,13 +140,7 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag == "DeathFloor")
-        {
-            Loader.LoadScene(Loader.Scene.RestartMenu);
-        }
-    }
+    
 
     private void OnJump()
     {
@@ -134,25 +148,14 @@ public class PlayerMovement : MonoBehaviour
         playerRB.AddForce(new Vector2(0f, movement.y * currentJumpForce * Time.deltaTime), ForceMode2D.Impulse);
         hasJumped = true;
     }
+    #endregion
 
 
-    
     #region Grounding
     private bool isGrounded()
     {
-        float extraHeight = .1f;
         RaycastHit2D groundCheckRay = Physics2D.Raycast(playerCollider.bounds.center, Vector2.down, playerCollider.bounds.extents.y + extraHeight, layerMask);
-        //Color raycolor;
-        //Debug.Log(groundCheckRay.collider);
-        /*if (groundCheckRay.collider != null)
-        {
-            raycolor = Color.green;
-        }
-        else
-        {
-            raycolor = Color.red;
-        }
-        Debug.DrawRay(playerCollider.bounds.center, Vector2.down * (playerCollider.bounds.extents.y + extraHeight), raycolor);*/
+        //DrawDebugRay(groundCheckRay);
         if (groundCheckRay.collider != null)
         {
             if (hasJumped)
@@ -168,20 +171,28 @@ public class PlayerMovement : MonoBehaviour
         return false;
     }
 
-    public void applyFriction()
-    {
-        //we use either the friction amount or our velocity
-        float amount = Mathf.Min(Mathf.Abs(playerRB.velocity.x), Mathf.Abs(frictionAmount));
-        //sets to movement direction
-        amount *= Mathf.Sign(playerRB.velocity.x);
-        //applies force against movement direction
-        playerRB.AddForce(Vector2.right * -amount, ForceMode2D.Impulse);
-    }
+    
     IEnumerator startCayoteTime()
     {
         cayoteTimeUp = false;
         yield return new WaitForSeconds(0.1f);
         cayoteTimeUp = true;
+    }
+
+    public void DrawDebugRay(RaycastHit2D groundCheckRay)
+    {
+        
+        Color raycolor;
+        Debug.Log(groundCheckRay.collider);
+        if (groundCheckRay.collider != null)
+        {
+            raycolor = Color.green;
+        }
+        else
+        {
+            raycolor = Color.red;
+        }
+        Debug.DrawRay(playerCollider.bounds.center, Vector2.down * (playerCollider.bounds.extents.y + extraHeight), raycolor);
     }
     #endregion
 
