@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Scenes - UI/UI_Restart_Menu.unity
     guid: 3d7776ad1fd08fb489e395315db56669
   - enabled: 1
+    path: Assets/Scenes/Scenes - UI/UI_Tutorial.unity
+    guid: 9d39748c0a6355e40a13f8ad90d27a31
+  - enabled: 1
     path: Assets/Scenes/Scenes - Levels/Levels - In Progress/IP_Level_0.unity
     guid: eeb685eea00cb4b4da4ddfbe880038b2
   - enabled: 1

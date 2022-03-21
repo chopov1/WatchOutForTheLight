@@ -12,6 +12,7 @@ public static class Loader
         UI_Main_Menu,
         UI_Loading,
         UI_Restart_Menu,
+        UI_Tutorial,
         IP_Level_0,
         IP_Level_1,
         IP_Level_2,

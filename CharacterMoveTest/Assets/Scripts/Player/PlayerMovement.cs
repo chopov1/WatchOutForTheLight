@@ -24,8 +24,7 @@ public class PlayerMovement : MonoBehaviour
     float velPower = 0.9f;
     float extraHeight = .1f;
 
-    bool hasJumped = false;
-    bool isJumping;
+    public bool hasJumped = false;
     public bool canAcceptInput = true;
     Vector2 movement;
     bool cayoteTimeUp = true;

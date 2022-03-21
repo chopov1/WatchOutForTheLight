@@ -7,13 +7,18 @@ public class TimerDeathSystem : MonoBehaviour
 {
     // Start is called before the first frame update
     CapsuleCollider2D playerCollider;
-    float currentTime;
-    float startSeconds;
+    //float currentTime;
+    //float startSeconds;
     //[SerializeField] float biteTime = 3f;
     bool count;
     bool bitingPlayer;
     public Text counter;
-    public float TimerTresh = 5.0f;
+    public Slider healthBar;
+    //public float TimerTresh = 5.0f;
+    public float MaxHealth = 100;
+    public float sunDamageRate = .2f;
+    float CurrentHealth;
+
 
     public PlayerMovement moveScript;
 
@@ -26,6 +31,9 @@ public class TimerDeathSystem : MonoBehaviour
     {
         playerCollider = GetComponent<CapsuleCollider2D>();
         SunManager.OnPlayerHit += playerHit;
+        healthBar.maxValue = MaxHealth;
+        CurrentHealth = MaxHealth;
+        healthBar.value = MaxHealth;
     }
     
     private void OnDestroy()
@@ -48,7 +56,7 @@ public class TimerDeathSystem : MonoBehaviour
                 {
                     moveScript.currentJumpForce = moveScript.jumpForce;
                 }
-                currentTime = startSeconds;
+                //currentTime = startSeconds;
             }
             if (count == true)
             {
@@ -60,13 +68,19 @@ public class TimerDeathSystem : MonoBehaviour
                 {
                     moveScript.currentJumpForce = moveScript.jumpForceInSun;
                 }
-                currentTime += Time.deltaTime;
+                //currentTime += Time.deltaTime;
+                CurrentHealth -= sunDamageRate;
             }
-            counter.text = "Time Left: " + currentTime.ToString("#.00");
-            if (currentTime >= TimerTresh)
+            //counter.text = "Time Left: " + currentTime.ToString("#.00");
+            healthBar.value = CurrentHealth;
+            if(healthBar.value <= 0)
             {
                 Loader.LoadScene(Loader.Scene.UI_Restart_Menu);
             }
+            /*if (currentTime >= TimerTresh)
+            {
+                Loader.LoadScene(Loader.Scene.UI_Restart_Menu);
+            }*/
         }
     }
 
@@ -74,7 +88,8 @@ public class TimerDeathSystem : MonoBehaviour
     {
         if (collision.gameObject.tag == "Human")
         {
-            currentTime = startSeconds;
+            //currentTime = startSeconds;
+            CurrentHealth = MaxHealth;
         }
     }
 

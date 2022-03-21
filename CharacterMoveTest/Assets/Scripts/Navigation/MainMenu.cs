@@ -5,18 +5,19 @@ using UnityEngine;
 public class MainMenu : MonoBehaviour
 {
     
-    public void LoadLevel0()
+    public void PlayGame()
     {
         Loader.LoadScene(Loader.Scene.IP_Level_0);
     }
 
-    public void LoadLevel1()
+    public void LoadTutorial()
     {
-        Loader.LoadScene(Loader.Scene.IP_Level_1);
+        Loader.LoadScene(Loader.Scene.UI_Tutorial);
     }
 
-    public void LoadLevel2()
+    public void BackToMenu()
     {
-        Loader.LoadScene(Loader.Scene.IP_Level_3);
+        Loader.LoadScene(Loader.Scene.UI_Main_Menu);
     }
+
 }

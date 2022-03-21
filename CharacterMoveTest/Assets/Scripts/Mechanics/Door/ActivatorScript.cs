@@ -6,7 +6,7 @@ public class ActivatorScript : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField] bool boolToPass;
-    [SerializeField] float pushGracePeriod = 2f;
+    [SerializeField] float pushGracePeriod = .2f;
 
     BoxCollider2D trigger;
     bool canPush = true;
