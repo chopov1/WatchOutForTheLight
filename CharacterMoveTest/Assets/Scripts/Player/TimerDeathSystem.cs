@@ -12,7 +12,7 @@ public class TimerDeathSystem : MonoBehaviour
     //[SerializeField] float biteTime = 3f;
     bool count;
     bool bitingPlayer;
-    public Text counter;
+    //public Text counter;
     public Slider healthBar;
     //public float TimerTresh = 5.0f;
     public float MaxHealth = 100;
@@ -47,7 +47,11 @@ public class TimerDeathSystem : MonoBehaviour
         {
             if (count == false)
             {
-                if(moveScript.currentMoveSpeed != moveScript.moveSpeed)
+                if (moveScript.isInSun != false)
+                {
+                    moveScript.isInSun = false;
+                }
+                if (moveScript.currentMoveSpeed != moveScript.moveSpeed)
                 {
                     moveScript.currentMoveSpeed = moveScript.moveSpeed;
                     
@@ -60,6 +64,10 @@ public class TimerDeathSystem : MonoBehaviour
             }
             if (count == true)
             {
+                if(moveScript.isInSun != true)
+                {
+                    moveScript.isInSun = true;
+                }
                 if (moveScript.currentMoveSpeed != moveScript.moveSpeedInSun)
                 {
                     moveScript.currentMoveSpeed = moveScript.moveSpeedInSun;

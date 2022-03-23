@@ -9,10 +9,6 @@ public class HumanBehavior : MonoBehaviour
     [SerializeField] public float decceleration = 6;
     [SerializeField] public float moveSpeedY;
     [SerializeField] public float moveSpeedX;
-    [SerializeField] public float BoundY;
-    [SerializeField] public float BoundYTwo;
-    [SerializeField] public float BoundX;
-    [SerializeField] public float BoundXTwo;
     [SerializeField] float detectionLength = 80f;
     public float moveSpeed = 6f;
     [SerializeField] LayerMask maskToIgnore;
@@ -37,10 +33,6 @@ public class HumanBehavior : MonoBehaviour
     {
         startPos = transform.position;
         direction = Vector2.right;
-        rightBound.x = BoundX;
-        rightBound.y = BoundY;
-        leftBound.x = BoundXTwo;
-        leftBound.y = BoundYTwo;
         setState(new HumanIdle(this));
     }
 

@@ -8,7 +8,9 @@ public class PlayerMovement : MonoBehaviour
     BoxCollider2D playerCollider;
     [SerializeField] LayerMask layerMask;
     Animator playerAnimator;
-    SpriteRenderer spriteRenderer;
+
+    public SpriteRenderer spriteRenderer;
+
     Rigidbody2D playerRB;
     public float currentMoveSpeed = 9f;
     [SerializeField] public float moveSpeed = 100f;
@@ -23,9 +25,11 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float gravityScale = 1;
     float velPower = 0.9f;
     float extraHeight = .1f;
-
+    int jumpsLeft;
+    int maxJumps = 2;
     public bool hasJumped = false;
     public bool canAcceptInput = true;
+    public bool isInSun = false;
     Vector2 movement;
     bool cayoteTimeUp = true;
     #endregion
@@ -41,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
         currentMoveSpeed = moveSpeed;
         currentJumpForce = jumpForce;
         Loader.lastActiveScene = (Loader.Scene)SceneManager.GetActiveScene().buildIndex;
+        jumpsLeft = maxJumps;
     }
 
     // Update is called once per frame
@@ -54,8 +59,8 @@ public class PlayerMovement : MonoBehaviour
         if (canAcceptInput)
         {
             movement = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-            playerAnimator.SetFloat("Speed", Mathf.Abs(movement.x));
         }
+        
         isGrounded();
         if (movement.x > 0.1f || movement.x < -0.1f)
         {
@@ -84,8 +89,8 @@ public class PlayerMovement : MonoBehaviour
             playerRB.velocity = new Vector2(movement.x * currentMoveSpeed * Time.deltaTime, playerRB.velocity.y);
             //transform.Translate(new Vector2(movement.x * moveSpeed * Time.deltaTime, 0f));
             //playerRB.MovePosition(playerRB.position + (movement * moveSpeed *Time.deltaTime));
+            
         }
-
         if (CanJump())
         {
             addJumpForce();
@@ -98,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRB.AddForce(Vector2.down * playerRB.velocity.y * (1 - jumpCutMultiplier), ForceMode2D.Impulse);
         }*/
+
         if (playerRB.velocity.y < 0 && hasJumped)
         {
             playerRB.gravityScale = gravityScale * fallGravityMultiplier;
@@ -106,6 +112,9 @@ public class PlayerMovement : MonoBehaviour
         {
             playerRB.gravityScale = gravityScale;
         }
+
+        playerAnimator.SetFloat("Speed", Mathf.Abs(movement.x));
+        playerAnimator.SetBool("IsJumping", hasJumped);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -130,7 +139,7 @@ public class PlayerMovement : MonoBehaviour
     #region Jumping
     private bool CanJump()
     {
-        if (!canAcceptInput)
+        if (!canAcceptInput || isInSun)
         {
             return false;
         }
@@ -142,12 +151,10 @@ public class PlayerMovement : MonoBehaviour
         {
             return true;
         }
-        
         return false;
     }
 
     
-
     private void addJumpForce()
     {   
         playerRB.AddForce(new Vector2(0f, movement.y * currentJumpForce * Time.deltaTime), ForceMode2D.Impulse);
@@ -188,7 +195,7 @@ public class PlayerMovement : MonoBehaviour
     {
         
         Color raycolor;
-        Debug.Log(groundCheckRay.collider);
+        //Debug.Log(groundCheckRay.collider);
         if (groundCheckRay.collider != null)
         {
             raycolor = Color.green;

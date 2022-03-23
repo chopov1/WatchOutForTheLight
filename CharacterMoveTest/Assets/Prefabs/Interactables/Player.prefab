@@ -164,6 +164,7 @@ MonoBehaviour:
   frictionAmount: 2
   fallGravityMultiplier: 1.6
   gravityScale: 2
+  hasJumped: 0
   canAcceptInput: 1
 --- !u!50 &264162244045509308
 Rigidbody2D:
@@ -214,8 +215,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6ea29513488c394a8c976d31645d1df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: {fileID: 0}
-  TimerTresh: 2
+  healthBar: {fileID: 0}
+  MaxHealth: 1000
+  sunDamageRate: 0.1
   moveScript: {fileID: 264162244045509311}
 --- !u!114 &8643077811786488077
 MonoBehaviour:
