@@ -21,7 +21,7 @@ public class Dispenser : MonoBehaviour
     }
     private void setProjectileProperties()
     {
-        foreach(GameObject obj in pooler.poolDictionary["Enemy"])
+        foreach(GameObject obj in pooler.poolDictionary["Platform"])
         {
             Projectile p = obj.GetComponent<Projectile>();
             p.direction = directionToShoot;

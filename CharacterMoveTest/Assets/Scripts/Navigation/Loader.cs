@@ -19,6 +19,7 @@ public static class Loader
         IP_Level_3,
         IP_Level_4,
         IP_Level_5,
+        IP_Level_6,
         UI_Win_Screen,
     }
 

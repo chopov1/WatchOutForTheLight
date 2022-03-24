@@ -7,9 +7,10 @@ public class PlayerMovement : MonoBehaviour
     #region Properties
     BoxCollider2D playerCollider;
     [SerializeField] LayerMask layerMask;
+    //[SerializeField] ParticleSystem jumpParticles;
     Animator playerAnimator;
 
-    public SpriteRenderer spriteRenderer;
+    SpriteRenderer spriteRenderer;
 
     Rigidbody2D playerRB;
     public float currentMoveSpeed = 9f;
@@ -159,6 +160,7 @@ public class PlayerMovement : MonoBehaviour
     {   
         playerRB.AddForce(new Vector2(0f, movement.y * currentJumpForce * Time.deltaTime), ForceMode2D.Impulse);
         hasJumped = true;
+        //jumpParticles.Play();
     }
     #endregion
 

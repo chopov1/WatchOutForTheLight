@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraZoom : MonoBehaviour
 {
     Camera cam;
-    float sizeInSun = 11;
+    float sizeInSun = 9;
     float sizeInShade = 10;
     public float zoomSpeed = 0.08f;
 
